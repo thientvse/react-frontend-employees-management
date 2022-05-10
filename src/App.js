@@ -1,10 +1,31 @@
 import './App.css';
+import { BrowserRouter as Router, Route, Switch, Routes} from 'react-router-dom';
+
+import FooterComponent from './components/FooterComponent';
+import HeaderComponent from './components/HeaderComponent';
 import ListEmployeeComponent from './components/ListEmployeeComponent';
+import CreateEmployeeComponent from './components/CreateEmployeeComponent';
+import UpdateEmployeeComponent from './components/UpdateEmployeeComponent';
+import ViewEmployeeComponent from './components/ViewEmployeeComponent';
 
 function App() {
   return (
-    <div className="container">
-     <ListEmployeeComponent />
+    <div>
+      <Router>
+          <HeaderComponent />
+            <div className="container">
+              <Router>
+                <Switch> 
+                  <Route path = "/" exact component = {ListEmployeeComponent}></Route>
+                    <Route path = "/employees" component = {ListEmployeeComponent}></Route>
+                    <Route path = "/add-employee/:id" component = {CreateEmployeeComponent}></Route>
+                    <Route path = "/view-employee/:id" component = {ViewEmployeeComponent}></Route>
+                    {/* <Route path = "/view-employee/:id" component = {ViewEmployeeComponent}></Route> */}
+                </Switch>
+              </Router>
+            </div>
+          <FooterComponent />
+      </Router>
    </div>
   );
 }
